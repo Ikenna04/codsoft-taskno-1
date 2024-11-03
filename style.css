@@ -1,0 +1,987 @@
+/* FONT FACE */
+@font-face {
+	font-family: 'style';
+	src: url(assets/fonts/Significent1/Significent\ .ttf);
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url(assets/fonts/Montserrat-Light/montserrat/Montserrat-Regular.ttf);
+}
+
+/* | CSS RESET  */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	/* line-height: 1.5; */
+}
+
+/* | UTILITY CLASSES */
+img {
+	display: block;
+}
+
+.no-wrap {
+	white-space: nowrap;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.cp {
+	cursor: pointer;
+}
+
+li {
+	list-style-type: none;
+}
+
+.btn {
+	width: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* | VARIABLES */
+:root {
+	/* | COLORS  */
+	--power: #ffc83d;
+	--violet: hsl(272, 70%, 32%);
+	--light-violet: hsl(243, 98%, 82%);
+	--whatsapp: #25d366;
+	--facebook: hsl(221, 44%, 41%);
+	--google: hsl(5, 80%, 56%);
+	--linkedin: hsl(201, 100%, 35%);
+	--github: hsl(260, 3%, 20%);
+	--gray: hsl(210, 7%, 56%);
+	--black: hsl(0, 0%, 0%);
+	--white: hsl(0, 0%, 100%);
+
+	/* | FONTS  */
+	--small-fonts: 400 0.6rem 'Nunito';
+	--p-fonts: 400 1.5rem 'Nunito';
+	--h1-fonts: 700 2rem 'Nunito';
+	--h2-fonts: 700 1.5rem 'Nunito';
+	--h3-fonts: 700 1.2rem 'Nunito';
+	--styled-fonts: 300 1.2rem 'style';
+
+	/* STYLE  */
+	--transition: all 1s;
+}
+
+/* | GENERAL STYLES */
+html {
+	font: var(--p-fonts);
+	color: var(--gray);
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+
+body {
+	background-color: var(--white);
+	display: flex;
+	flex-flow: column;
+}
+
+nav {
+	padding: 0.25rem 0.5rem;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.logo code {
+	font: var(--styled-fonts);
+	color: var(--light-violet);
+}
+
+.menu-button {
+	width: 2rem;
+	height: 2rem;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.close-menu-btn {
+	width: 2rem;
+	height: 2rem;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	display: none;
+	position: absolute;
+	top: 0.25rem;
+	right: 0.5rem;
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+	width: 1.8rem;
+	height: 0.2rem;
+	border-radius: 0.2rem;
+	background-color: var(--light-violet);
+	position: absolute;
+	transition: var(--transition);
+}
+
+.menu-icon::before,
+.menu-icon::after {
+	content: '';
+}
+
+.menu-icon::before {
+	transform: translate(-0.9rem, -0.5rem);
+}
+
+.menu-icon::after {
+	transform: translate(-0.9rem, 0.5rem);
+}
+
+nav ul {
+	width: 100%;
+	transform: scaleY(0);
+	position: relative;
+}
+
+nav:focus-within ul {
+	transform-origin: top center;
+	animation: showNavMenu 0.5s ease-in-out forwards;
+}
+
+nav:focus-within .close-menu-btn {
+	display: block;
+}
+
+nav:focus-within .close-menu-btn:focus {
+	transform: translateX(-2rem);
+	z-index: 1;
+}
+
+.close-menu-btn:focus + ul {
+	transform-origin: top center;
+	animation: hideNavMenu 0.5s ease forwards;
+}
+
+nav ul {
+	width: 100%;
+	background-color: var(--github);
+	flex-flow: column nowrap;
+	position: absolute;
+	top: 2.5rem;
+	left: 0;
+	z-index: 1;
+}
+
+nav ul li {
+	padding: 0.5rem;
+	border-top: 1px solid var(--gray);
+}
+
+nav ul a {
+	width: 80%;
+	margin: auto;
+	display: block;
+	text-align: center;
+}
+
+nav ul a:any-link {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+header nav ul a:hover,
+nav ul a:focus {
+	transform: scale(1.2);
+	transition: var(--transition);
+}
+
+section {
+	width: 100vw;
+	min-height: 100vh;
+	padding: 1rem;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	align-content: space-between;
+}
+
+section > * {
+	max-width: 100%;
+}
+
+.header-article > * {
+	margin-top: 0.67rem;
+	text-align: center;
+}
+
+h1 {
+	font: var(--h1-fonts);
+	color: var(--black);
+}
+
+.socials {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 0.67rem;
+}
+
+.socials li {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	background-color: var(--github);
+}
+
+.socials :is(li:nth-child(2), li:nth-child(4), li:nth-child(5)) {
+	background-color: var(--linkedin);
+}
+
+.socials li:nth-child(3) {
+	background-color: var(--google);
+}
+
+.socials li:nth-child(6) {
+	background-color: var(--whatsapp);
+}
+
+.btn > a {
+	width: 100%;
+	aspect-ratio: 1;
+}
+
+.socials :is(img, svg) {
+	width: 50%;
+	height: auto;
+}
+
+.header-btn button,
+.projects button {
+	width: 100%;
+	height: 2rem;
+	border-radius: 0.4rem;
+	font: inherit;
+	text-transform: uppercase;
+	background-color: var(--violet);
+	color: var(--white);
+}
+
+.header-btn button:not(:first-child) {
+	margin-top: 0.67rem;
+}
+
+button a {
+	width: 100%;
+	height: 100%;
+}
+x .skills {
+	gap: 1rem;
+	text-align: center;
+}
+
+h2 {
+	width: 100%;
+	height: max-content;
+	font: var(--h2-fonts);
+	color: var(--black);
+	text-align: left;
+}
+
+.stack ul {
+	margin: 0.67rem;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: center;
+	gap: 0 0.67rem;
+}
+
+.stack li {
+	width: 2.5rem;
+	position: relative;
+}
+
+.stack svg {
+	width: 100%;
+	height: auto;
+}
+
+#shape {
+	fill: var(--gray);
+	transition: var(--transition);
+}
+
+#text {
+	fill: var(--white);
+}
+
+svg:hover #shape {
+	fill: var(--black);
+}
+
+#line-img {
+	height: 0.9em;
+	width: auto;
+}
+
+.stacks p {
+	font: var(--small-fonts);
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	opacity: 0;
+	transition: var(--transition);
+}
+
+.stacks li:hover p {
+	opacity: 1;
+	top: 100%;
+}
+
+.skill {
+	display: flex;
+	flex-flow: column;
+	text-align: left;
+	gap: 0.5rem;
+}
+
+.proficiency ul {
+	width: 100%;
+}
+
+.proficiency li:nth-child(2n) {
+	width: 100%;
+	height: 0.8rem;
+	margin-block: 0.67rem;
+	border-radius: 2rem;
+	background-color: var(--gray);
+	overflow: hidden;
+}
+
+.progress {
+	width: 75%;
+	height: 100%;
+	border-radius: 0.2rem;
+	background-color: var(--light-violet);
+}
+
+ul li:not(:nth-child(2)) .progress {
+	width: 20%;
+}
+
+.projects > ul {
+	padding: 0.67rem;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 0.8rem;
+	grid-auto-flow: column;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+
+.projects > ul > a {
+	width: 11.5em;
+	height: auto;
+	min-height: 50vh;
+	max-height: 65vh;
+	padding: 1rem;
+	border-radius: 0.67rem;
+	background-color: var(--white);
+	display: flex;
+	flex-flow: column;
+	gap: 0.4rem;
+	box-shadow: 1px 1px 2px 0px var(--gray);
+}
+
+h3 {
+	font: var(--h3-fonts);
+}
+
+.projects > ul > a p {
+	max-height: 50%;
+	overflow-y: scroll;
+	scrollbar-width: none;
+}
+
+.projects .project-footer {
+	margin-top: auto;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.8rem;
+}
+
+.project-stack {
+	grid-column: 2 span;
+	display: flex;
+	align-items: center;
+	gap: 0.13rem;
+}
+
+.ball {
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	background-color: var(--linkedin);
+}
+
+.project-footer li:nth-child(2n) {
+	text-align: right;
+}
+
+.stars {
+	display: flex;
+	align-items: center;
+	gap: 0.13rem;
+}
+
+.size {
+	text-transform: uppercase;
+}
+
+.contact {
+	height: auto;
+	min-height: auto;
+	gap: 1rem;
+	text-align: center;
+}
+
+.contact p:first-of-type {
+	text-transform: uppercase;
+}
+
+.img-box {
+	width: 100%;
+	aspect-ratio: 1;
+	padding: 0.2rem;
+	border-radius: 50%;
+	background: linear-gradient(to bottom, var(--light-violet), var(--violet));
+	overflow: hidden;
+	position: relative;
+}
+
+.img-box::after {
+	content: '';
+	width: 95%;
+	height: 95%;
+	border-radius: 50%;
+	background-image: url(assets/img/avatar.jpg);
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.location {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.3rem;
+}
+
+.location img {
+	height: 1em;
+	width: auto;
+}
+
+footer {
+	height: 2rem;
+	margin-top: 1rem;
+	background-color: var(--violet);
+	color: var(--white);
+}
+
+.goto-top {
+	width: 1.12rem;
+	height: 1.12rem;
+	border-radius: 0.3rem;
+	background-color: var(--violet);
+	position: fixed;
+	top: calc(100% - 1.79rem);
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 5;
+}
+
+.goto-top img {
+	height: 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	nav:focus-within ul {
+		transform: scaleY(1);
+	}
+
+	.close-menu-btn:focus + ul {
+		transform: scaleY(0);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.menu-button:focus-within .menu-icon {
+		background-color: transparent;
+		transform: rotate(720deg);
+	}
+
+	.menu-button:focus-within .menu-icon::before {
+		transform: translateX(-0.9rem) rotate(45deg);
+	}
+
+	.menu-button:focus-within .menu-icon::after {
+		transform: translateX(-0.9rem) rotate(-45deg);
+	}
+
+	:is(.skills, .projects) > * {
+		margin-top: 4.37em;
+		scale: 1.2;
+		opacity: 0;
+		animation: fade-in linear forwards;
+		animation-timeline: view(100vh -4.37em);
+	}
+
+	:is(.proficiency, .contact) > * {
+		scale: 0.8;
+		opacity: 0;
+		animation: fade-in linear forwards;
+		animation-timeline: view(100vh -4.37em);
+	}
+
+	.goto-top {
+		margin-top: 4.17em;
+		opacity: 0;
+		animation: fade-go-to linear forwards;
+		animation-timeline: view(90vh -2em);
+	}
+
+	@keyframes showNavMenu {
+		0% {
+			transform: scaleY(0);
+		}
+
+		70% {
+			transform: scaleY(1.2);
+		}
+
+		100% {
+			transform: scaleY(1);
+		}
+	}
+
+	@keyframes hideNavMenu {
+		0% {
+			transform: scaleY(1);
+		}
+
+		30% {
+			transform: scaleY(1.2);
+		}
+
+		100% {
+			transform: scaleY(0);
+		}
+	}
+
+	@keyframes fade-in {
+		to {
+			margin-top: 0;
+			scale: 1;
+			opacity: 1;
+		}
+	}
+
+	@keyframes fade-go-to {
+		60% {
+			opacity: 0;
+		}
+
+		100% {
+			margin-top: 0;
+			scale: 1;
+			opacity: 1;
+		}
+	}
+}
+
+@media screen and (min-width: 450px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 1.75rem 'Nunito';
+	}
+}
+
+@media screen and (min-width: 550px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 2rem 'Nunito';
+	}
+}
+
+@media screen and (min-width: 650px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 2.3rem 'Nunito';
+	}
+}
+
+@media screen and (min-width: 750px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--small-fonts: 400 0.6rem 'Nunito';
+		--nav-fonts: 400 0.75em 'Nunito';
+		--p-fonts: 400 12px 'Nunito';
+		--h1-fonts: 700 2.67em 'Nunito';
+		--h2-fonts: 700 2em 'Nunito';
+		--h3-fonts: 700 1.1em 'Nunito';
+		--styled-fonts: 300 2.67em 'style';
+	}
+
+	/* | GENERAL STYLES */
+	header > * {
+		width: 100%;
+		padding: 2em 4em;
+	}
+
+	nav:focus-within ul {
+		animation: none;
+	}
+
+	.menu-button,
+	.close-menu-btn {
+		display: none;
+	}
+
+	nav:focus-within ul {
+		display: flex;
+	}
+
+	nav ul {
+		width: auto;
+		background-color: transparent;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		position: static;
+		transform: scaleY(1);
+	}
+
+	nav ul li {
+		padding: 0.83em;
+		font: var(--nav-fonts);
+		border-top: none;
+	}
+
+	section {
+		padding: 2em 2.67em;
+		grid-template-columns: repeat(2, 1fr);
+		place-content: center;
+	}
+
+	.header-section {
+		align-items: center;
+	}
+
+	.header-section img {
+		order: 1;
+	}
+
+	.header-article > * {
+		margin-top: 2.3em;
+		text-align: left;
+	}
+
+	.header-article h1 {
+		margin: 0;
+	}
+
+	.header-article > p {
+		line-height: 2;
+	}
+
+	.socials {
+		margin-top: 1.3em;
+		justify-content: start;
+		gap: 0.5em;
+	}
+
+	.socials li {
+		width: 2em;
+		height: 2em;
+	}
+
+	.header-btn {
+		display: flex;
+		align-items: center;
+		gap: 2.3em;
+	}
+
+	.header-btn button,
+	.projects button {
+		width: max-content;
+		height: 2.3em;
+		padding: 0.67em 1em;
+	}
+
+	.header-btn button:not(:first-child) {
+		margin-top: 0;
+	}
+
+	.skills {
+		gap: 1em 2.3em;
+		text-align: left;
+	}
+
+	.skills > * {
+		height: max-content;
+	}
+
+	.skills > *:not(:nth-child(2)) {
+		grid-column-start: 2;
+	}
+
+	.skills > img {
+		grid-row: 1/4;
+	}
+
+	.stack ul {
+		margin: 0.83em;
+		gap: 0.83em;
+	}
+
+	.stack li {
+		width: 2em;
+	}
+
+	.skill {
+		gap: 0.83em;
+	}
+
+	.proficiency {
+		gap: 2em 3.75em;
+	}
+
+	.proficiency img {
+		grid-row: 1/3;
+		grid-column: 2/3;
+	}
+
+	.proficiency li:nth-child(2n) {
+		width: 100%;
+		height: 1em;
+		margin-block: 1.5em;
+	}
+
+	.projects {
+		max-height: auto;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+		gap: 2.67em;
+	}
+
+	.projects > ul {
+		max-height: 120vh;
+		padding: 0;
+		flex-grow: 1;
+		display: flex;
+		flex-flow: column wrap;
+		justify-content: start;
+		gap: 2.67em 2%;
+		overflow-x: hidden;
+	}
+
+	.projects > ul > a {
+		width: 48%;
+		min-height: auto;
+		align-self: start;
+		gap: 0.83em;
+	}
+
+	.projects .project-footer {
+		margin-top: 0.67em;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 0.5em;
+	}
+
+	.project-footer li:nth-child(2n) {
+		text-align: left;
+	}
+
+	.project-footer li:last-child {
+		margin-left: auto;
+	}
+
+	.contact {
+		grid-template-columns: repeat(1, 3fr 1fr);
+		text-align: left;
+	}
+
+	.contact > *:not(.img-box) {
+		grid-column: 1/2;
+	}
+
+	.contact > p:first-of-type {
+		margin-top: 0;
+	}
+
+	.img-box {
+		margin-block: auto;
+		padding: 0.2rem;
+		grid-column: 2/3;
+		grid-row: 1/8;
+	}
+
+	.location {
+		justify-content: start;
+	}
+
+	.goto-top {
+		width: 2.3em;
+		height: 2.3em;
+		border-radius: 0.67em;
+		top: calc(100% - 3.5em);
+		left: calc(100% - 3.5em);
+		transform: translateX(0);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:is(.skills, .projects) > * {
+			margin-top: 0;
+			scale: 1;
+			opacity: 1;
+			animation: none;
+		}
+
+		.skills {
+			gap: 1em 30em;
+			opacity: 0;
+			animation: fade-skill linear forwards;
+			animation-timeline: view(160vh -14.37em);
+		}
+
+		:is(.proficiency, .contact) > * {
+			scale: 1;
+			opacity: 1;
+			animation: none;
+		}
+
+		.proficiency {
+			scale: 0.8;
+			opacity: 0;
+			animation: fade-in linear forwards;
+			animation-timeline: view(160vh -14.37em);
+		}
+
+		.projects h2 {
+			margin-top: 8.3em;
+			opacity: 0;
+			animation: fade-pro linear forwards;
+			animation-timeline: view(80vh -12em);
+		}
+
+		.contact {
+			margin-top: 8.3em;
+			opacity: 0;
+			animation: fade-in linear forwards;
+			animation-timeline: view(140vh -14.37em);
+		}
+
+		.goto-top {
+			animation-timeline: view(70vh -2em);
+		}
+
+		@keyframes fade-skill {
+			90% {
+				opacity: 0;
+			}
+
+			100% {
+				gap: 1em 2.3em;
+				opacity: 1;
+			}
+		}
+
+		@keyframes fade-in {
+			75% {
+				opacity: 0;
+			}
+
+			100% {
+				margin-top: 0;
+				scale: 1;
+				opacity: 1;
+			}
+		}
+
+		@keyframes fade-pro {
+			80% {
+				opacity: 0;
+			}
+
+			100% {
+				margin-top: 0;
+				opacity: 1;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 16px 'Nunito';
+	}
+}
+
+@media screen and (min-width: 1250px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 20px 'Nunito';
+	}
+}
+
+@media screen and (min-width: 1500px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 24px 'Nunito';
+	}
+}
+
+@media screen and (min-width: 1750px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 28px 'Nunito';
+	}
+}
+
+@media screen and (min-width: 2000px) {
+	/* | VARIABLES */
+	:root {
+		/* | FONTS  */
+		--p-fonts: 400 32px 'Nunito';
+	}
+}
