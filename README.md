@@ -29,8 +29,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: (https://github.com/Ikenna04/portfolio-app)
-- Live Site URL: (https://ikenna04.github.io/portfolio-app/)
+- Solution URL: (https://github.com/Ikenna04/codsoft-taskno-1)
+- Live Site URL: (https://ikenna04.github.io/codsoft-taskno-1/)
 
 ### Built with
 
